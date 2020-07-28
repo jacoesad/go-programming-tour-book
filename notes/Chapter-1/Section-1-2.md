@@ -44,8 +44,8 @@ $ tree
 var wordCmd = &cobra.Command{
 	Use:   "word",
 	Short: "单词格式转换",
-    Long:  "支持多种单词格式转换",
-    Run: func(cmd *cobra.Command, args []string) {},
+	Long:  "支持多种单词格式转换",
+	Run: func(cmd *cobra.Command, args []string) {},
 }
 
 func init() {}
@@ -156,11 +156,11 @@ func CamelCaseToUnderscore(s string) string {
 
 ```go
 const (
-   ModeUpper                      = iota + 1 // 全部单词转为大写
-   ModeLower                                 // 全部单词转为小写
-   ModeUnderscoreToUpperCamelcase            // 下划线单词转为大写驼峰单词
-   ModeUnderscoreToLowerCamelcase            // 下划线单词转为小写驼峰单词
-   ModeCamelcaseToUnderscore                 // 驼峰单词转为下划线单词
+	ModeUpper                      = iota + 1 // 全部单词转为大写
+	ModeLower                                 // 全部单词转为小写
+	ModeUnderscoreToUpperCamelcase            // 下划线单词转为大写驼峰单词
+	ModeUnderscoreToLowerCamelcase            // 下划线单词转为小写驼峰单词
+	ModeCamelcaseToUnderscore                 // 驼峰单词转为下划线单词
 )
 ```
 
@@ -170,12 +170,12 @@ const (
 
 ```go
 var desc = strings.Join([]string{
-   "该子命令支持各种单词格式转换，模式如下：",
-   "1：全部单词转为大写",
-   "2：全部单词转为小写",
-   "3：下划线单词转为大写驼峰单词",
-   "4：下划线单词转为小写驼峰单词",
-   "5：驼峰单词转为下划线单词",
+	"该子命令支持各种单词格式转换，模式如下：",
+	"1：全部单词转为大写",
+	"2：全部单词转为小写",
+	"3：下划线单词转为大写驼峰单词",
+	"4：下划线单词转为小写驼峰单词",
+	"5：驼峰单词转为下划线单词",
 }, "\n")
 
 var wordCmd = &cobra.Command{
