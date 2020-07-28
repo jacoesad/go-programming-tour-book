@@ -325,7 +325,7 @@ package main
 import (
 	"errors"
 	"flag"
-	"fmt
+	"fmt"
 	"log"
 )
 
