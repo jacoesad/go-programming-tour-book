@@ -154,7 +154,7 @@ exit status 2
 
 flag的整体流程分析
 
-<img src="assets/image-20200724104355859.png" alt="image-20200724104355859" style="zoom:30%;" />
+<div align=center><img width="300" src="assets/image-20200724104355859.png"/></div>
 
 #### 1. `flag.Parse`
 
