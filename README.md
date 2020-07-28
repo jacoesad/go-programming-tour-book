@@ -4,13 +4,14 @@
 
 ## 第1章 命令行应用
 
-- [笔记](https://github.com/jacoesad/go-programming-tour-book/tree/master/notes/chapter-1.md)
+- [1.1 示例](example)
+- [代码](tour)
+- 笔记
+  - [1.1. 工具之旅](notes/Chapter-1/Section-1-1.md)
 
-- [代码](https://github.com/jacoesad/go-programming-tour-book/tree/master/tour)
-
-- [第一节的示例](https://github.com/jacoesad/go-programming-tour-book/tree/master/example)
 
 
+> **[全部笔记索引](notes/README.md)**
 
 
 ------
