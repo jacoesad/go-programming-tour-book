@@ -1,14 +1,12 @@
-# 第1章 命令行应用：打造自己的工具集
-
 ## 1.1 工具之旅
 
-打造自己的工具集，提高工作效率。
+本章节学习目标是跟着教材，学习打造自己的工具集，提高工作效率。
 
 ### 1.1.1 标准库flag
 
-标准库`flag`，主要功能是实现命令行参数的解析。
+- 标准库`flag`，主要功能是实现命令行参数的解析。
 
-后续，使用开源项目`Cobra`构建CLI应用程序。K8s、Hugo、etcd、Docker都是使用Cobra构建的。
+- 后续使用开源项目`Cobra`构建CLI应用程序，K8s、Hugo、etcd、Docker都是使用Cobra构建的。
 
 ### 1.1.2 初始化项目
 
@@ -16,7 +14,7 @@
 
 - 创建工作路径
 - 切换到`tour`目录
-- 初始化项目Go mouules
+- 初始化项目Go modules
 
 ```bash
 $ mkdir -p $HOME/go-programming-tour-book/tour
@@ -31,7 +29,7 @@ go: creating new go.mod: module github.com/go-programming-tour-book/tour
 $ go env -w GO111MODULE=on
 ```
 
-另外，设置国内镜像代理：
+另外，设置国内镜像代理，解决可能因为网络不通无法更新包：
 
 ```bash
 $ go env -w GOPROXY=https://goproxy.cn,direct
@@ -41,7 +39,7 @@ $ go env -w GOPROXY=https://goproxy.cn,direct
 
 #### 1. 标准库flag的基本使用和长短选项
 
-示例代码 `example/ex-1.go`
+**示例代码** `example/ex-1.go`
 
 ```go
 package main
@@ -83,11 +81,11 @@ $ go run ex-1.go -n=jacoe -name=abc
 name: abc
 ```
 
-可以发现，输出结果是最后一个赋值的变量。
+根据测试可以发现，输出结果是最后一个赋值的变量，相同的变量多次赋值，后面的覆盖前面的值。
 
 #### 2. 子命令的使用
 
-示例代码 `example/ex-2.go`
+**示例代码** `example/ex-2.go`
 
 ```go
 package main
@@ -122,9 +120,12 @@ func main() {
 
 另外，调用`flag.NewFlagSet`方法，处理子命令。
 
-`flag.NewFlagSet`方法的第二个参数`ErrorHandling`，用于指定处理异常错误，内置了一下三种模式
+`flag.NewFlagSet`方法的第二个参数`ErrorHandling`，用于指定处理异常错误，内置了一下三种模式：
+
+**源代码** `flag/flag.go 308`
 
 ```go
+// These constants cause FlagSet.Parse to behave as described if the parse fails.
 const (
 	ContinueOnError ErrorHandling = iota // Return a descriptive error.
 	ExitOnError                          // Call os.Exit(2).
@@ -159,6 +160,8 @@ flag的整体流程分析
 
 上图中，首先是`flag.Parse`。它总是在所有命令行参数注册的最后进行调用，其功能是解析并绑定命令行参数。实现如下：
 
+**源代码** `flag/flag.go 1007,995`
+
 ```go
 // CommandLine is the default set of command-line flags, parsed from os.Args.
 // The top-level functions such as BoolVar, Arg, and so on are wrappers for the
@@ -178,6 +181,8 @@ func Parse() {
 `FlagSet.Parse`是对解方法的进一步封装，实际上解析逻辑放在parseOne中，而其他特殊情况则由`FlagSet.Parse`处理。
 
 > 这是一个分层明显、结构清晰的方法设计，值得参考。
+
+**源代码** `flag/flag.go 963`
 
 ```go
 // Parse parses flag definitions from the argument list, which should not
@@ -209,6 +214,8 @@ func (f *FlagSet) Parse(arguments []string) error {
 ```
 
 #### 3. `FlagSet.parseOne`
+
+**源代码** `flag/flag.go 888`
 
 ```go
 // parseOne parses one flag. It reports whether a flag was seen.
@@ -287,7 +294,9 @@ func (f *FlagSet) parseOne() (bool, error) {
 }
 ```
 
-#### 1.1.5 定义参数的类型
+### 1.1.5 定义参数的类型
+
+**源代码** `flag/flag.go 281`
 
 ```go
 // Value is the interface to the dynamic value stored in a flag.
@@ -306,7 +315,9 @@ type Value interface {
 }
 ```
 
-`flag`的命令行参数是可以自定义的。也就是说，在`Value.Set`方法中，我们只需实现其对应的Value相关的两个接口就可以了，代码如下：
+`flag`的命令行参数是可以自定义的。也就是说，在`Value.Set`方法中，我们只需实现其对应的Value相关的两个接口就可以了。
+
+**示例代码** `example/ex-3.go`
 
 ```go
 package main
@@ -349,9 +360,9 @@ $ go run ex-3.go -name=go-tour
 name: jacoe: go-tour
 ```
 
+### 1.1.6 小结
 
-
-
+本章学习了标准库`flag`的基本使用方法。后续会使用其读取外部命令行，如启动端口号，设置日志路径等。
 
 
 
