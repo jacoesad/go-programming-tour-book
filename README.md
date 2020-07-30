@@ -9,6 +9,7 @@
 - 笔记
 	- [1.1. 工具之旅](notes/Chapter-1/Section-1-1.md)
 	- [1.2. 单词格式转换](notes/Chapter-1/Section-1-2.md)
+	- [1.3. 便捷的时间工具](notes/Chapter-1/Section-1-3.md)
 
 
 
